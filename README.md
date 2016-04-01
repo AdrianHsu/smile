@@ -12,12 +12,17 @@
 共有八種表情可以偵測，分別為：
 >"憤怒", "輕蔑", "厭惡", "恐懼", "快樂", "中立", "難過", "驚喜"
 
+![Alt Image Text](img/play.png "")
+[點擊以下載](https://play.google.com/store/apps/details?id=com.dots.focus.smile)
 ##Demo
 ![Alt Image Text](img/1.png "")
 ![Alt Image Text](img/2.png "")
 ![Alt Image Text](img/4.png "")
 
 ##About
+
+DOWNLOAD THE APP NOW!
+[https://play.google.com/store/apps/details?id=com.dots.focus.smile](https://play.google.com/store/apps/details?id=com.dots.focus.smile)
 
 原始範例參考自：[https://github.com/Microsoft/ProjectOxford-ClientSDK/tree/master/Emotion/Android](https://github.com/Microsoft/ProjectOxford-ClientSDK/tree/master/Emotion/Android)
 
