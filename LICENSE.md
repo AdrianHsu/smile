@@ -1,11 +1,10 @@
-# microsoft-emotion-api-android
-
-Microsoft Cognitive Services SDK
+crosoft Cognitive Services SDK
 
 Copyright (c) Microsoft Corporation
 
 All rights reserved.
 
+*This license applies only to the SDK code. Sample images are licensed separately, please refer to [LICENSE-IMAGE](</LICENSE-IMAGE.md>)*
 
 MIT License
 
