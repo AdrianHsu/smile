@@ -1,6 +1,39 @@
-# microsoft-emotion-api-android
+# README
 
-Microsoft Cognitive Services SDK
+##Overview
+![Alt Image Text](img/smile.png "")
+
+
+「您今天微笑了嗎？」
+
+利用Microsoft cognitive services所新發表的功能Emotion API & Face API，
+建立的臉部表情辨識軟體。
+
+共有八種表情可以偵測，分別為：
+>"憤怒", "輕蔑", "厭惡", "恐懼", "快樂", "中立", "難過", "驚喜"
+
+##Demo
+![Alt Image Text](img/1.png "")
+![Alt Image Text](img/2.png "")
+![Alt Image Text](img/4.png "")
+
+##About
+
+原始範例參考自：[https://github.com/Microsoft/ProjectOxford-ClientSDK/tree/master/Emotion/Android](https://github.com/Microsoft/ProjectOxford-ClientSDK/tree/master/Emotion/Android)
+
+本應用程式 "Smile!" 之開放原始碼已部署於Github：
+[https://github.com/AdrianHsu/microsoft-emotion-api-android](https://github.com/AdrianHsu/microsoft-emotion-api-android)
+
+＊本應用軟體不會存取您的任何相片＊
+
+##How to
+
+```
+git clone https://github.com/AdrianHsu/microsoft-emotion-api-android.git
+```
+
+
+## Microsoft Cognitive Services SDK
 
 Copyright (c) Microsoft Corporation
 

@@ -35,12 +35,18 @@ package com.dots.focus.smile.helper;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import com.dots.focus.smile.R;
 
@@ -55,15 +61,29 @@ public class SelectImageActivity extends ActionBarActivity {
 
     // The URI of photo taken with camera
     private Uri mUriPhotoTaken;
+    private AdView mAdView;
 
-    // When the activity is created, set all the member variables to initial state.
+
+  // When the activity is created, set all the member variables to initial state.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_image);
+      mAdView = (AdView) findViewById(R.id.ad_view);
+
+      // Create an ad request. Check your logcat output for the hashed device ID to
+      // get test ads on a physical device. e.g.
+      // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+      AdRequest adRequest = new AdRequest.Builder()
+                              .build();
+
+      // Start loading the ad in the background.
+      mAdView.loadAd(adRequest);
+
     }
 
-    // Save the activity state when it's going to stop.
+
+  // Save the activity state when it's going to stop.
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -101,7 +121,31 @@ public class SelectImageActivity extends ActionBarActivity {
                 break;
         }
     }
+  /** Called when leaving the activity */
+  @Override
+  public void onPause() {
+    if (mAdView != null) {
+      mAdView.pause();
+    }
+    super.onPause();
+  }
+  /** Called when returning to the activity */
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (mAdView != null) {
+      mAdView.resume();
+    }
+  }
 
+  /** Called before the activity is destroyed */
+  @Override
+  public void onDestroy() {
+    if (mAdView != null) {
+      mAdView.destroy();
+    }
+    super.onDestroy();
+  }
     // When the button of "Take a Photo with Camera" is pressed.
     public void takePhoto(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

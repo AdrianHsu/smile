@@ -53,6 +53,9 @@ import android.widget.TextView;
 
 import com.dots.focus.smile.helper.ImageHelper;
 import com.dots.focus.smile.helper.SelectImageActivity;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.emotion.EmotionServiceClient;
 import com.microsoft.projectoxford.emotion.EmotionServiceRestClient;
@@ -88,6 +91,7 @@ public class RecognizeActivity extends ActionBarActivity {
     private TextView typeTv;
     private String[] name = {"憤怒", "輕蔑", "厭惡", "恐懼", "快樂", "中立",
                           "難過", "驚喜"};
+  private InterstitialAd mInterstitialAd;
 
 
     private EmotionServiceClient client;
@@ -104,9 +108,35 @@ public class RecognizeActivity extends ActionBarActivity {
         mButtonSelectImage = (Button) findViewById(R.id.buttonSelectImage);
         mEditText = (EditText) findViewById(R.id.editTextResult);
         typeTv = (TextView) findViewById(R.id.type);
+
+      // Create the InterstitialAd and set the adUnitId.
+      mInterstitialAd = new InterstitialAd(this);
+      // Defined in res/values/strings.xml
+      mInterstitialAd.setAdUnitId(getString(R.string.inter_ad_unit_id));
+      mInterstitialAd.setAdListener(new AdListener() {
+        @Override
+        public void onAdClosed() {
+          requestNewInterstitial();
+        }
+      });
+
+      requestNewInterstitial();
+    }
+    private void requestNewInterstitial() {
+      // Create an ad request. Check your logcat output for the hashed device ID to
+      // get test ads on a physical device. e.g.
+      // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+      AdRequest adRequest = new AdRequest.Builder()
+                              .build();
+
+      mInterstitialAd.loadAd(adRequest);
+      if(!mInterstitialAd.isLoaded())
+        Log.v("ads", "in function, !mInterstitialAd.isLoaded()");
+
     }
 
-    @Override
+
+  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_recognize, menu);
@@ -155,6 +185,12 @@ public class RecognizeActivity extends ActionBarActivity {
     public void selectImage(View view) {
         mEditText.setText("");
 
+        if (mInterstitialAd.isLoaded()) {
+          mInterstitialAd.show();
+          Log.v("ads" , "mInterstitialAd.isLoaded()");
+        } else {
+          Log.v("ads" , "!mInterstitialAd.isLoaded()");
+        }
         Intent intent;
         intent = new Intent(RecognizeActivity.this, SelectImageActivity.class);
         startActivityForResult(intent, REQUEST_SELECT_IMAGE);

@@ -24,5 +24,6 @@
     <string name="select_an_image">請挑選一張照片</string>
     <string name="take_photo">拍張照</string>
     <string name="select_image_in_album">從相簿挑選</string>
-
+    <string name="banner_ad_unit_id">ca-app-pub-9752562751214092/5443566564</string>
+    <string name="inter_ad_unit_id">ca-app-pub-9752562751214092/5164364964</string>
 </resources>
