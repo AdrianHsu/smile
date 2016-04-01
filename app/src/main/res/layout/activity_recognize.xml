@@ -21,12 +21,30 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Image"
-                android:id="@+id/buttonSelectImage"
-                android:onClick="selectImage"/>
+                android:orientation="vertical">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Image"
+                    android:id="@+id/buttonSelectImage"
+                    android:onClick="selectImage"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="檢測結果:"
+                    android:textSize="20sp"
+                    android:id="@+id/type_text"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="35sp"
+                    android:textColor="#f08f10"
+                    android:id="@+id/type"/>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/selectedImage"

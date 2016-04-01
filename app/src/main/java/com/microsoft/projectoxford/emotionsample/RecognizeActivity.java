@@ -49,6 +49,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.emotion.EmotionServiceClient;
@@ -64,6 +65,10 @@ import com.microsoft.projectoxford.face.contract.Face;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RecognizeActivity extends ActionBarActivity {
@@ -82,6 +87,10 @@ public class RecognizeActivity extends ActionBarActivity {
 
     // The edit to show status and result.
     private EditText mEditText;
+    private TextView typeTv;
+    private String[] name = {"憤怒", "輕蔑", "厭惡", "恐懼", "快樂", "中立",
+                          "難過", "驚喜"};
+
 
     private EmotionServiceClient client;
 
@@ -96,6 +105,7 @@ public class RecognizeActivity extends ActionBarActivity {
 
         mButtonSelectImage = (Button) findViewById(R.id.buttonSelectImage);
         mEditText = (EditText) findViewById(R.id.editTextResult);
+        typeTv = (TextView) findViewById(R.id.type);
     }
 
     @Override
@@ -330,6 +340,23 @@ public class RecognizeActivity extends ActionBarActivity {
                                 r.faceRectangle.left + r.faceRectangle.width,
                                 r.faceRectangle.top + r.faceRectangle.height,
                                 paint);
+                        if(count == 0) { // only for first person
+                          Double[] arr = new Double[8];
+                          Double[] arr2 = new Double[8];
+                          arr[0] = arr2[0] = r.scores.anger;
+                          arr[1] = arr2[1] = r.scores.contempt;
+                          arr[2] = arr2[2] = r.scores.disgust;
+                          arr[3] = arr2[3] = r.scores.fear;
+                          arr[4] = arr2[4] = r.scores.happiness;
+                          arr[5] = arr2[5] = r.scores.neutral;
+                          arr[6] = arr2[6] = r.scores.sadness;
+                          arr[7] = arr2[7] = r.scores.surprise;
+
+                          Arrays.sort(arr);
+                          for(int i = 0; i < 8; i++)
+                            if(arr[7] == arr2[i])
+                              typeTv.setText(name[i]);
+                        }
                         count++;
                     }
                     ImageView imageView = (ImageView) findViewById(R.id.selectedImage);
