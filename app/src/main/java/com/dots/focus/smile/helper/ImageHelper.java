@@ -30,7 +30,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-package com.microsoft.projectoxford.emotionsample.helper;
+package com.dots.focus.smile.helper;
 
 import android.content.ContentResolver;
 import android.database.Cursor;

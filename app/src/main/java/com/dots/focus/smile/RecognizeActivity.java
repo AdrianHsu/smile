@@ -30,7 +30,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-package com.microsoft.projectoxford.emotionsample;
+package com.dots.focus.smile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -51,13 +51,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dots.focus.smile.helper.ImageHelper;
+import com.dots.focus.smile.helper.SelectImageActivity;
 import com.google.gson.Gson;
 import com.microsoft.projectoxford.emotion.EmotionServiceClient;
 import com.microsoft.projectoxford.emotion.EmotionServiceRestClient;
 import com.microsoft.projectoxford.emotion.contract.FaceRectangle;
 import com.microsoft.projectoxford.emotion.contract.RecognizeResult;
 import com.microsoft.projectoxford.emotion.rest.EmotionServiceException;
-import com.microsoft.projectoxford.emotionsample.helper.ImageHelper;
 
 import com.microsoft.projectoxford.face.FaceServiceRestClient;
 import com.microsoft.projectoxford.face.contract.Face;
@@ -65,10 +66,7 @@ import com.microsoft.projectoxford.face.contract.Face;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class RecognizeActivity extends ActionBarActivity {
@@ -158,7 +156,7 @@ public class RecognizeActivity extends ActionBarActivity {
         mEditText.setText("");
 
         Intent intent;
-        intent = new Intent(RecognizeActivity.this, com.microsoft.projectoxford.emotionsample.helper.SelectImageActivity.class);
+        intent = new Intent(RecognizeActivity.this, SelectImageActivity.class);
         startActivityForResult(intent, REQUEST_SELECT_IMAGE);
     }
 
@@ -173,7 +171,7 @@ public class RecognizeActivity extends ActionBarActivity {
                     mImageUri = data.getData();
 
                     mBitmap = ImageHelper.loadSizeLimitedBitmapFromUri(
-                            mImageUri, getContentResolver());
+                                            mImageUri, getContentResolver());
                     if (mBitmap != null) {
                         // Show the image on screen.
                         ImageView imageView = (ImageView) findViewById(R.id.selectedImage);
